@@ -1,0 +1,9 @@
+streamlit==1.31.1
+Pillow
+pandas
+numpy
+tensorflow
+matplotlib
+opencv-python
+gdown
+opencv-python-headless
