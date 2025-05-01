@@ -141,7 +141,7 @@ st.markdown("""
     <div class="banner">
         <h1>Klasifikasi Tahapan Instar Crocidolomia Pavonana</h1>
         <h2>Unggah gambar larva Crocidolomia pavonana dan lihat hasil prediksi tahapan instarnya secara otomatis.</h2>
-        <a href="/Main" target="_self">
+        <a href="/main" target="_self">
             <button style="padding:10px 20px;font-size:16px;">Mulai</button>
         </a>
     </div>
