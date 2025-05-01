@@ -68,7 +68,7 @@ st.markdown("""
 .banner button {
     font-size: clamp(0.875rem, 2vw, 1.125rem);
     padding: 0 clamp(1rem, 5vw, 2.5rem);
-    height: clamp(40px, 5vh, 50px);
+    height: clamp(50px, 5vh, 50px);
     border-radius: 30px;
     border: 2px solid #ffffff;
     background: linear-gradient(145deg, #fefae0, #e9f5db);
