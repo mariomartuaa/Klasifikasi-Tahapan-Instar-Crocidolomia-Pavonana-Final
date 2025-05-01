@@ -78,6 +78,7 @@ st.markdown("""
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .banner button:hover {
