@@ -37,7 +37,7 @@ st.markdown("""
     color:#2e5339;
 }
 
-[data-testid="stFileDropzoneInstructions"] small:nth-of-type(1), [data-testid="stUploadedFile"] div:nth-of-type(3) {
+[data-testid="stFileDropzoneInstructions"] small:nth-of-type(1), [data-testid="stUploadedFile"] div:nth-of-type(4) {
     color:#2e5339;
 }
 
