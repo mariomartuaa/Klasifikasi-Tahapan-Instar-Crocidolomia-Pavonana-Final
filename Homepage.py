@@ -197,7 +197,7 @@ with st.container():
                 </div>""",
                 unsafe_allow_html=True
             )
-                st.image('assets/grad-cam.jpg')
+            st.image('assets/grad-cam.jpg')
 
 st.markdown("""<hr style="background-color: black; margin-left:5rem; margin-right:5rem;">""",unsafe_allow_html=True)
 
