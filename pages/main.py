@@ -22,7 +22,7 @@ st.markdown("""
             height: 500%;
         }
 
-small.st-emotion-cache-7oyrr6 e1bju1570 {
+[data-testid="stFileDropzoneInstructions"].small.st-emotion-cache-7oyrr6 e1bju1570 {
     color: #2e5339;
 }
 [data-testid="stHeader"] {
