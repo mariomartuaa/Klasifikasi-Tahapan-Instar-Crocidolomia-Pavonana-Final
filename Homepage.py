@@ -176,7 +176,7 @@ with st.container():
                 </div>""",
                 unsafe_allow_html=True
             )
-            st.image("assets/banner.jpg")
+            st.image("assets/prediksi-otomatis.jpg")
 
 
     with col2:
