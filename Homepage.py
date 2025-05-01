@@ -12,6 +12,7 @@ st.markdown("""
         header {visibility: hidden;}
         .main .block-container {
             padding: 0rem;
+            overflow-x: hidden;
         }
         
 [data-testid="stHeader"] {
