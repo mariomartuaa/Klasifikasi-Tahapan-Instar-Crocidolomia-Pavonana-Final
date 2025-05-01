@@ -20,6 +20,7 @@ st.markdown("""
 
 [data-testid="stAppViewBlockContainer"] {
     background: linear-gradient(130deg, #fdf6ec 0%, #e6f4ea 50%, #fff9c4 100%);
+    height: 100%;
 }
 
 [data-testid="stHorizontalBlock"]{
