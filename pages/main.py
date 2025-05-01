@@ -134,7 +134,7 @@ st.markdown("""
 def load_inception_model():
     model_path = 'InceptionV31_model.keras'
     if not os.path.exists(model_path):
-        url = 'https://drive.google.com/file/d/1brLqWkd9AQbhvSGkk7rM03V5I_NfebUj'
+        url = 'https://drive.google.com/uc?id=1brLqWkd9AQbhvSGkk7rM03V5I_NfebUj'
         gdown.download(url, model_path, quiet=False)
     return tf.keras.models.load_model(model_path)
 
