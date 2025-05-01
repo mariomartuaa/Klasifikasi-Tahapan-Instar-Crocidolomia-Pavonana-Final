@@ -158,7 +158,7 @@ with st.container():
     col1, col2 = st.columns(2)
     with col1:
         st.markdown(
-            '<div class="card">🔍 <strong>Prediksi Instar Otomatis</strong><br>'
+            '<div class="card"><strong>Prediksi Instar Otomatis</strong><br>'
             'Model AI kami mengidentifikasi instar larva dengan akurat berdasarkan citra yang diunggah.</div>',
             unsafe_allow_html=True
         )
@@ -181,7 +181,7 @@ with st.container():
 
     with col2:
         st.markdown(
-            '<div class="card">🔥 <strong>Visualisasi Grad-CAM</strong><br>'
+            '<div class="card"><strong>Visualisasi Grad-CAM</strong><br>'
             'Lihat bagian gambar mana yang menjadi fokus model dalam menentukan klasifikasi.</div>',
             unsafe_allow_html=True
         )
@@ -197,13 +197,7 @@ with st.container():
                 </div>""",
                 unsafe_allow_html=True
             )
-            col1, col2, col3 = st.columns([2,3,2])
-            with col1:
-                st.write('')
-            with col2:
                 st.image('assets/grad-cam.jpg')
-            with col3:
-                st.write('')
 
 st.markdown("""<hr style="background-color: black; margin-left:5rem; margin-right:5rem;">""",unsafe_allow_html=True)
 
