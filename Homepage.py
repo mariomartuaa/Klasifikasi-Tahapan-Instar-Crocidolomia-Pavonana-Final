@@ -116,6 +116,7 @@ st.markdown("""
     background: linear-gradient(135deg, #e9f5db 0%, #c7e9b0 40%, #fef9c3 100%);
     border: 1px solid #2e5339;
     color: #2e5339;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
 }
 
 .card-informasi {
@@ -125,7 +126,7 @@ st.markdown("""
     background: linear-gradient(135deg, #e9f5db 0%, #c7e9b0 40%, #fef9c3 100%);
     border: 1px solid #2e5339;
     color: #2e5339;
-
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
 }
 
 /* Optional: semua heading dan teks lainnya */
