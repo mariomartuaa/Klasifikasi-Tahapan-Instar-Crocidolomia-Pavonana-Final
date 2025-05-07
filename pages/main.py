@@ -118,7 +118,6 @@ st.markdown("""
     background-color: #ffff;
     border: 1px solid #2e5339;
     color: #2e5339;
-    width: 50%;
 }
 
 .card-informasi {
