@@ -10,7 +10,7 @@ import os
 import gdown
 import cv2
 
-st.set_page_config(layout="centered", initial_sidebar_state="auto")
+st.set_page_config(layout="wide", initial_sidebar_state="auto")
 
 st.markdown("""
 <style>
