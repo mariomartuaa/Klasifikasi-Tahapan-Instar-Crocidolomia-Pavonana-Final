@@ -33,7 +33,7 @@ st.markdown("""
     background: linear-gradient(130deg, #fdf6ec 0%, #e6f4ea 50%, #fff9c4 100%);
 }
 
-[data-testid="baseButton-headerNoPadding"], [data-testid="baseButton-minimal"], [data-testid="stUploadedFile"], [data-testid="stFileUploadDropzone"], [data-testid="stFileDropzoneInstructions"], [data-testid="stTable"] {
+[data-testid="baseButton-headerNoPadding"], [data-testid="baseButton-minimal"], [data-testid="stUploadedFile"], [data-testid="stFileUploadDropzone"], [data-testid="stFileDropzoneInstructions"] {
     color:#2e5339;
 }
 
@@ -250,7 +250,7 @@ def main_page():
                         'Tahap Instar': class_names,
                         'Akurasi (%)': prediction_inception[0] * 100
                     })
-                    st.table(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
+                    st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
 
                 gradcam_status_placeholder = st.empty()
                 gradcam_status_placeholder.info("⏳ Membuat Grad-CAM visualisasi...")
