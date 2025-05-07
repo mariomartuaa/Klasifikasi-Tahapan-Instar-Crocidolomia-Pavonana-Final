@@ -235,20 +235,22 @@ def main_page():
                 confidence_inception = np.max(prediction_inception) * 100
 
                 status_placeholder.success("✅ Klasifikasi selesai!")
-                st.markdown(f"""
-                    <div class="card">
-                        <strong>Model: </strong>InceptionV3<br>
-                        <strong>Prediksi: </strong>{predicted_class_inception}<br>
-                        <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
-                    </div>
-                                    """, unsafe_allow_html=True)
+                hasil_col1, hasil_col2 = st.columns(2)
+                with hasil_col1:
+                    st.markdown(f"""
+                        <div class="card">
+                            <strong>Model: </strong>InceptionV3<br>
+                            <strong>Prediksi: </strong>{predicted_class_inception}<br>
+                            <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
+                        </div>
+                                        """, unsafe_allow_html=True)
                 
-
-                # Data untuk visualisasi
-                df_confidence = pd.DataFrame({
-                    'Tahap Instar': class_names,
-                    'Akurasi (%)': prediction_inception[0] * 100
-                })
+                with hasil_col2:
+                    # Data untuk visualisasi
+                    df_confidence = pd.DataFrame({
+                        'Tahap Instar': class_names,
+                        'Akurasi (%)': prediction_inception[0] * 100
+                    })
 
                 st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
 
@@ -265,12 +267,7 @@ def main_page():
                 # Tampilkan Grad-CAM
                 st.markdown(f'<h1 style="text-align: center; font-size: 30px; color: #2e5339;">Grad-CAM Visualisasi</h1>', unsafe_allow_html=True)
                 gradcam_col1, gradcam_col2, gradcam_col3 = st.columns(3)
-                with gradcam_col1:
-                    st.write("")
-                with gradcam_col2:
-                    st.image(superimposed_img_inception, caption="Grad-CAM InceptionV3", use_column_width=True)
-                with gradcam_col3:
-                    st.write("")
+                st.image(superimposed_img_inception, caption="Grad-CAM InceptionV3", use_column_width=True)
         with margin_col3:
             st.write("")
 
