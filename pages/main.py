@@ -34,8 +34,8 @@ st.markdown("""
 }
 
 [data-testid="stAppViewBlockContainer"] {
-    padding-right: 20rem;
-    padding-left: 20rem;
+    padding-right: 10rem;
+    padding-left: 10rem;
 }
 
 [data-testid="baseButton-headerNoPadding"], [data-testid="baseButton-minimal"], [data-testid="stUploadedFile"], [data-testid="stFileUploadDropzone"], [data-testid="stFileDropzoneInstructions"] {
