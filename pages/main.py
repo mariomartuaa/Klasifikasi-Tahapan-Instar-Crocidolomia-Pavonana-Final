@@ -115,9 +115,9 @@ st.markdown("""
     border-radius: 10px;
     padding: 1.5rem;
     margin: 0.5rem 0;
-    background-color: #ffff;
     border: 1px solid #2e5339;
     color: #2e5339;
+    background: linear-gradient(135deg, #e9f5db 0%, #c7e9b0 40%, #fef9c3 100%); 
 }
 
 .card-informasi {
