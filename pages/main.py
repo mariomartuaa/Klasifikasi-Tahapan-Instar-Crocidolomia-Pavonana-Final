@@ -10,7 +10,7 @@ import os
 import gdown
 import cv2
 
-st.set_page_config(layout="centered", initial_sidebar_state="auto")
+st.set_page_config(layout="wide", initial_sidebar_state="auto")
 
 st.markdown("""
 <style>
@@ -31,6 +31,11 @@ st.markdown("""
 
 [data-testid="stAppViewBlockContainer"], [data-testid="stSpinner"] {
     background: linear-gradient(130deg, #fdf6ec 0%, #e6f4ea 50%, #fff9c4 100%);
+}
+
+[data-testid="stAppViewBlockContainer"] {
+    padding-right: 2rem;
+    padding-left: 2rem;
 }
 
 [data-testid="baseButton-headerNoPadding"], [data-testid="baseButton-minimal"], [data-testid="stUploadedFile"], [data-testid="stFileUploadDropzone"], [data-testid="stFileDropzoneInstructions"] {
