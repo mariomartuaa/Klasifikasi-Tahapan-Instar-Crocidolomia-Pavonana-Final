@@ -251,8 +251,7 @@ def main_page():
                         'Tahap Instar': class_names,
                         'Akurasi (%)': prediction_inception[0] * 100
                     })
-
-                st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
+                    st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
 
                 gradcam_status_placeholder = st.empty()
                 gradcam_status_placeholder.info("⏳ Membuat Grad-CAM visualisasi...")
