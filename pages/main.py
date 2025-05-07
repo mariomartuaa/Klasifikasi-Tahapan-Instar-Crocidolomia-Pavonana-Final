@@ -37,6 +37,10 @@ st.markdown("""
     color:#2e5339;
 }
 
+[data-testid="stFileUploadDropzone"] {
+    width: 50%;
+}
+
 [data-testid="stFileDropzoneInstructions"] small:nth-of-type(1), [data-testid="stUploadedFile"] small:nth-of-type(1) {
     color:#2e5339;
 }
