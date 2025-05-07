@@ -212,9 +212,9 @@ def main_page():
     st.markdown("""<h1 style="text-align: center; font-size: 40px; color: #2e5339;">Klasifikasi Tahapan Instar Crocidolomia Pavonana</h1>""", unsafe_allow_html=True)
     st.markdown("---")
     margin_col1, margin_col2, margin_col3 = st.columns(3)
-    margin_col1:
+    with margin_col1:
             st.write("")
-    margin_col2:
+    with margin_col2:
             uploaded_file = st.file_uploader(label="Upload gambar", type=['jpg', 'jpeg', 'png'])
         
             if uploaded_file:
@@ -275,7 +275,7 @@ def main_page():
                         st.image(superimposed_img_inception, caption="Grad-CAM InceptionV3", use_column_width=True)
                     with gradcam_col3:
                         st.write("")
-        margin_col3:
+        with margin_col3:
                 st.write("")
 
 
