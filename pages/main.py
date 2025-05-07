@@ -208,12 +208,13 @@ def main_page():
     """)
 
     # 📤 Upload gambar untuk prediksi
-    st.markdown("""<h1 style="text-align: center; font-size: 40px; color: #2e5339;">Klasifikasi Tahapan Instar Crocidolomia Pavonana</h1>""", unsafe_allow_html=True)
-    st.markdown("---")
+    
     margin_col1, margin_col2, margin_col3 = st.columns([1, 4, 1])
     with margin_col1:
          st.write("")
     with margin_col2:
+        st.markdown("""<h1 style="text-align: center; font-size: 40px; color: #2e5339;">Klasifikasi Tahapan Instar Crocidolomia Pavonana</h1>""", unsafe_allow_html=True)
+        st.markdown("---")
         uploaded_file = st.file_uploader(label="Upload gambar", type=['jpg', 'jpeg', 'png'])
     
         if uploaded_file:
