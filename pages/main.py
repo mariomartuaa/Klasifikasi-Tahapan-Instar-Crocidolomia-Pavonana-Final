@@ -29,7 +29,7 @@ st.markdown("""
     background-color: #ffff;
 }
 
-[data-testid="stSpinner"] {
+data-testid="stAppViewBlockContainer", [data-testid="stSpinner"] {
     background: linear-gradient(130deg, #fdf6ec 0%, #e6f4ea 50%, #fff9c4 100%);
 }
 
