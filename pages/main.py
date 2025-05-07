@@ -37,10 +37,6 @@ st.markdown("""
     color:#2e5339;
 }
 
-[data-testid="stFileUploadDropzone"] {
-    width: 50%;
-}
-
 [data-testid="stFileDropzoneInstructions"] small:nth-of-type(1), [data-testid="stUploadedFile"] small:nth-of-type(1) {
     color:#2e5339;
 }
@@ -215,65 +211,71 @@ def main_page():
     # 📤 Upload gambar untuk prediksi
     st.markdown("""<h1 style="text-align: center; font-size: 40px; color: #2e5339;">Klasifikasi Tahapan Instar Crocidolomia Pavonana</h1>""", unsafe_allow_html=True)
     st.markdown("---")
-    uploaded_file = st.file_uploader(label="Upload gambar", type=['jpg', 'jpeg', 'png'])
-
-    if uploaded_file:
-        image = Image.open(uploaded_file)
-
-        col1, col2 = st.columns(2)
-        with col1:
-            st.image(image, use_column_width=True)
-
-        if st.button("Klasifikasi Gambar"):
-            with col2:
-                status_placeholder = st.empty()
-                status_placeholder.info("⏳ Memproses dan memprediksi gambar...")
-
-                # Mapping kelas
-                class_names = ['Instar 1', 'Instar 2', 'Instar 3', 'Instar 4']
-
-                # Prediksi InceptionV3
-                preprocessed_inception = preprocess_image_inception(image)
-                prediction_inception = inception_model.predict(preprocessed_inception)
-                predicted_class_inception = class_names[np.argmax(prediction_inception)]
-                confidence_inception = np.max(prediction_inception) * 100
-
-                status_placeholder.success("✅ Klasifikasi selesai!")
-                st.markdown(f"""
-                    <div class="card">
-                        <strong>Model: </strong>InceptionV3<br>
-                        <strong>Prediksi: </strong>{predicted_class_inception}<br>
-                        <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
-                    </div>
-                                    """, unsafe_allow_html=True)
-                
-
-                # Data untuk visualisasi
-                df_confidence = pd.DataFrame({
-                    'Tahap Instar': class_names,
-                    'Akurasi (%)': prediction_inception[0] * 100
-                })
-
-                st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
-
-            gradcam_status_placeholder = st.empty()
-            gradcam_status_placeholder.info("⏳ Membuat Grad-CAM visualisasi...")
-
-            # Grad-CAM InceptionV3
-            heatmap_inception = make_gradcam_heatmap(preprocessed_inception, inception_model, "mixed10")
-            heatmap_inception = heatmap_inception.numpy()
-            superimposed_img_inception = superimpose_heatmap(image, heatmap_inception)
-
-            gradcam_status_placeholder.success("✅ Grad-CAM berhasil dibuat!")
-
-            # Tampilkan Grad-CAM
-            st.markdown(f'<h1 style="text-align: center; font-size: 30px; color: #2e5339;">Grad-CAM Visualisasi</h1>', unsafe_allow_html=True)
-            gradcam_col1, gradcam_col2, gradcam_col3 = st.columns(3)
-            with gradcam_col1:
-                st.write("")
-            with gradcam_col2:
-                st.image(superimposed_img_inception, caption="Grad-CAM InceptionV3", use_column_width=True)
-            with gradcam_col3:
+    margin_col1, margin_col2, margin_col3 = st.columns(3)
+    margin_col1:
+            st.write("")
+    margin_col2:
+            uploaded_file = st.file_uploader(label="Upload gambar", type=['jpg', 'jpeg', 'png'])
+        
+            if uploaded_file:
+                image = Image.open(uploaded_file)
+        
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.image(image, use_column_width=True)
+        
+                if st.button("Klasifikasi Gambar"):
+                    with col2:
+                        status_placeholder = st.empty()
+                        status_placeholder.info("⏳ Memproses dan memprediksi gambar...")
+        
+                        # Mapping kelas
+                        class_names = ['Instar 1', 'Instar 2', 'Instar 3', 'Instar 4']
+        
+                        # Prediksi InceptionV3
+                        preprocessed_inception = preprocess_image_inception(image)
+                        prediction_inception = inception_model.predict(preprocessed_inception)
+                        predicted_class_inception = class_names[np.argmax(prediction_inception)]
+                        confidence_inception = np.max(prediction_inception) * 100
+        
+                        status_placeholder.success("✅ Klasifikasi selesai!")
+                        st.markdown(f"""
+                            <div class="card">
+                                <strong>Model: </strong>InceptionV3<br>
+                                <strong>Prediksi: </strong>{predicted_class_inception}<br>
+                                <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
+                            </div>
+                                            """, unsafe_allow_html=True)
+                        
+        
+                        # Data untuk visualisasi
+                        df_confidence = pd.DataFrame({
+                            'Tahap Instar': class_names,
+                            'Akurasi (%)': prediction_inception[0] * 100
+                        })
+        
+                        st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
+        
+                    gradcam_status_placeholder = st.empty()
+                    gradcam_status_placeholder.info("⏳ Membuat Grad-CAM visualisasi...")
+        
+                    # Grad-CAM InceptionV3
+                    heatmap_inception = make_gradcam_heatmap(preprocessed_inception, inception_model, "mixed10")
+                    heatmap_inception = heatmap_inception.numpy()
+                    superimposed_img_inception = superimpose_heatmap(image, heatmap_inception)
+        
+                    gradcam_status_placeholder.success("✅ Grad-CAM berhasil dibuat!")
+        
+                    # Tampilkan Grad-CAM
+                    st.markdown(f'<h1 style="text-align: center; font-size: 30px; color: #2e5339;">Grad-CAM Visualisasi</h1>', unsafe_allow_html=True)
+                    gradcam_col1, gradcam_col2, gradcam_col3 = st.columns(3)
+                    with gradcam_col1:
+                        st.write("")
+                    with gradcam_col2:
+                        st.image(superimposed_img_inception, caption="Grad-CAM InceptionV3", use_column_width=True)
+                    with gradcam_col3:
+                        st.write("")
+        margin_col3:
                 st.write("")
 
 
