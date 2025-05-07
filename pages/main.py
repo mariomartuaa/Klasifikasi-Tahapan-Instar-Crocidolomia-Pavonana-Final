@@ -220,41 +220,37 @@ def main_page():
         if uploaded_file:
             image = Image.open(uploaded_file)
     
-            col1, col2 = st.columns(2)
-            with col1:
-                st.image(image, use_column_width=True)
     
             if st.button("Klasifikasi Gambar"):
-                with col2:
-                    status_placeholder = st.empty()
-                    status_placeholder.info("⏳ Memproses dan memprediksi gambar...")
-    
-                    # Mapping kelas
-                    class_names = ['Instar 1', 'Instar 2', 'Instar 3', 'Instar 4']
-    
-                    # Prediksi InceptionV3
-                    preprocessed_inception = preprocess_image_inception(image)
-                    prediction_inception = inception_model.predict(preprocessed_inception)
-                    predicted_class_inception = class_names[np.argmax(prediction_inception)]
-                    confidence_inception = np.max(prediction_inception) * 100
-    
-                    status_placeholder.success("✅ Klasifikasi selesai!")
-                    st.markdown(f"""
-                        <div class="card">
-                            <strong>Model: </strong>InceptionV3<br>
-                            <strong>Prediksi: </strong>{predicted_class_inception}<br>
-                            <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
-                        </div>
-                                        """, unsafe_allow_html=True)
-                    
-    
-                    # Data untuk visualisasi
-                    df_confidence = pd.DataFrame({
-                        'Tahap Instar': class_names,
-                        'Akurasi (%)': prediction_inception[0] * 100
-                    })
-    
-                    st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
+                status_placeholder = st.empty()
+                status_placeholder.info("⏳ Memproses dan memprediksi gambar...")
+
+                # Mapping kelas
+                class_names = ['Instar 1', 'Instar 2', 'Instar 3', 'Instar 4']
+
+                # Prediksi InceptionV3
+                preprocessed_inception = preprocess_image_inception(image)
+                prediction_inception = inception_model.predict(preprocessed_inception)
+                predicted_class_inception = class_names[np.argmax(prediction_inception)]
+                confidence_inception = np.max(prediction_inception) * 100
+
+                status_placeholder.success("✅ Klasifikasi selesai!")
+                st.markdown(f"""
+                    <div class="card">
+                        <strong>Model: </strong>InceptionV3<br>
+                        <strong>Prediksi: </strong>{predicted_class_inception}<br>
+                        <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
+                    </div>
+                                    """, unsafe_allow_html=True)
+                
+
+                # Data untuk visualisasi
+                df_confidence = pd.DataFrame({
+                    'Tahap Instar': class_names,
+                    'Akurasi (%)': prediction_inception[0] * 100
+                })
+
+                st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
     
                 gradcam_status_placeholder = st.empty()
                 gradcam_status_placeholder.info("⏳ Membuat Grad-CAM visualisasi...")
