@@ -179,79 +179,68 @@ def superimpose_heatmap(img, heatmap, alpha=0.4):
 
 # Main page
 def main_page():
-    st.markdown("""
-    <style>
-        section[data-testid="stSidebar"] {
-            width: 450px !important;
+    st.header("Klasifikasi Tahapan Instar Crocidolomia Pavonana", divider="green")
+    st.subheader("Contoh Gambar Instar")
+    instar_data = [
+        {
+            "title": "Instar 1",
+            "img": "assets/instar1.jpg",
+        },
+        {
+            "title": "Instar 2",
+            "img": "assets/instar2.jpg",
+        },
+        {
+            "title": "Instar 3",
+            "img": "assets/instar3.jpg",
+        },
+        {
+            "title": "Instar 4",
+            "img": "assets/instar4.jpg",
         }
-    </style>
-    """, unsafe_allow_html=True)
-    st.sidebar.markdown("<h1 style='text-align: center; color: #2e5339;'>Langkah-Langkah Penggunaan</h1>", unsafe_allow_html=True)
-    st.sidebar.markdown("""
-    1. **Upload Gambar**  
-    Unggah gambar larva Crocidolomia Pavonana berformat `.jpg`, `.jpeg`, atau `.png`.
+    ]
 
-    2. **Lihat Pratinjau Gambar**  
-    Pratinjau gambar akan otomatis muncul di halaman utama.
+    cols = st.columns(4)
+    for i in range(4):
+        with cols[i]:
+            st.markdown(f'<h1 style="text-align: center; font-size: 20px; color: #2e5339;">{instar_data[i]["title"]}</h1>', unsafe_allow_html=True)
+            st.image(instar_data[i]["img"], use_column_width=True)
+    uploaded_file = st.file_uploader(label="Upload gambar", type=['jpg', 'jpeg', 'png'])
+    if uploaded_file:
+        image = Image.open(uploaded_file)
+        st.image(image, use_column_width=True)
 
-    3. **Klik 'Klasifikasi Gambar'**  
-    Untuk memulai prediksi tahap instar dengan model deep learning.
+        if st.button("Klasifikasi Gambar"):
+            status_placeholder = st.empty()
+            status_placeholder.info("⏳ Memproses dan memprediksi gambar...")
 
-    4. **Tunggu Proses Prediksi**  
-    Sistem akan menampilkan hasil klasifikasi dan tingkat akurasi.
+            # Mapping kelas
+            class_names = ['Instar 1', 'Instar 2', 'Instar 3', 'Instar 4']
 
-    5. **Tinjau Hasil**  
-    Hasil berupa kelas instar, akurasi, dan tabel confidence.
+            # Prediksi InceptionV3
+            preprocessed_inception = preprocess_image_inception(image)
+            prediction_inception = inception_model.predict(preprocessed_inception)
+            predicted_class_inception = class_names[np.argmax(prediction_inception)]
+            confidence_inception = np.max(prediction_inception) * 100
 
-    6. **Lihat Visualisasi Grad-CAM**  
-    Menampilkan area penting dari gambar berdasarkan prediksi model.
-    """)
-
-    # 📤 Upload gambar untuk prediksi
-    st.markdown("""<h1 style="text-align: center; font-size: 40px; color: #2e5339;">Klasifikasi Tahapan Instar Crocidolomia Pavonana</h1>""", unsafe_allow_html=True)
-    st.markdown("---")
-    margin_col1, margin_col2, margin_col3 = st.columns([1, 3, 1])
-    with margin_col1:
-         st.write("")
-    with margin_col2:
-        uploaded_file = st.file_uploader(label="Upload gambar", type=['jpg', 'jpeg', 'png'])
-    
-        if uploaded_file:
-            image = Image.open(uploaded_file)
-            st.image(image, use_column_width=True)
-    
-            if st.button("Klasifikasi Gambar"):
-                status_placeholder = st.empty()
-                status_placeholder.info("⏳ Memproses dan memprediksi gambar...")
-
-                # Mapping kelas
-                class_names = ['Instar 1', 'Instar 2', 'Instar 3', 'Instar 4']
-
-                # Prediksi InceptionV3
-                preprocessed_inception = preprocess_image_inception(image)
-                prediction_inception = inception_model.predict(preprocessed_inception)
-                predicted_class_inception = class_names[np.argmax(prediction_inception)]
-                confidence_inception = np.max(prediction_inception) * 100
-
-                status_placeholder.success("✅ Klasifikasi selesai!")
-                hasil_col1, hasil_col2 = st.columns(2)
-                with hasil_col1:
-                    st.markdown(f"""
-                        <div class="card">
-                            <strong>Model: </strong>InceptionV3<br>
-                            <strong>Prediksi: </strong>{predicted_class_inception}<br>
-                            <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
-                        </div>
-                                        """, unsafe_allow_html=True)
-                
-                with hasil_col2:
-                    # Data untuk visualisasi
-                    df_confidence = pd.DataFrame({
-                        'Tahap Instar': class_names,
-                        'Akurasi (%)': prediction_inception[0] * 100
-                    })
-                    st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
-
+            status_placeholder.success("✅ Klasifikasi selesai!")
+            hasil_col1, hasil_col2 = st.columns(2)
+            with hasil_col1:
+                st.markdown(f"""
+                    <div class="card">
+                        <strong>Model: </strong>InceptionV3<br>
+                        <strong>Prediksi: </strong>{predicted_class_inception}<br>
+                        <strong>Akurasi: </strong>{confidence_inception:.2f}%<br>
+                    </div>
+                                    """, unsafe_allow_html=True)
+            
+            with hasil_col2:
+                # Data untuk visualisasi
+                df_confidence = pd.DataFrame({
+                    'Tahap Instar': class_names,
+                    'Akurasi (%)': prediction_inception[0] * 100
+                })
+                st.dataframe(df_confidence.style.format({'Akurasi (%)': '{:.2f}'}))
                 gradcam_status_placeholder = st.empty()
                 gradcam_status_placeholder.info("⏳ Membuat Grad-CAM visualisasi...")
 
